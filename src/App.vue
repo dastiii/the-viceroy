@@ -1,32 +1,57 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <default-layout>
+    <keep-alive>
+      <transition
+        name="fade-in-left"
+        mode="out-in"
+        appear
+      >
+        <router-view></router-view>
+      </transition>
+    </keep-alive>
+  </default-layout>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import DefaultLayout from "@/views/layouts/DefaultLayout";
+
+export default {
+  name: "App",
+  created() {
+    this.$store.dispatch("rooms/get");
+  },
+  components: {
+    DefaultLayout
+  }
+};
+</script>
+
+<style>
+@keyframes fadeInLeft {
+  from {
+    transform: translate3d(-40px, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1
+  }
 }
 
-#nav {
-  padding: 30px;
+.fade-in-left-leave-to {
+  opacity: 0;
+  transition: opacity .3s;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+.fade-in-left-enter {
+  opacity: 0;
+  transform: translate3d(-40px, 0, 0);
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.fade-in-left-enter-to {
+  opacity: 0;
+  animation-duration: .7s;
+  animation-fill-mode: both;
+  animation-name: fadeInLeft;
 }
 </style>

@@ -1,23 +1,43 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "home",
+    component: () => import(/* webpackChunkName: "home" */ "../views/Home")
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: "/benefits",
+    name: "benefits",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import(/* webpackChunkName: "benefits" */ "../views/Benefits")
+  },
+  {
+    path: "/mealplan",
+    component: () =>
+      import(/* webpackChunkName: "mealplan" */ "../views/Mealplan"),
+    children: [
+      {
+        path: "/mealplan/:week",
+        name: "mealplan.forWeek",
+        props: true,
+        component: () =>
+          import(
+            /* webpackChunkName: "mealplan-week" */ "../views/mealplan/Week"
+          )
+      },
+      {
+        path: "",
+        name: "mealplan",
+        redirect: {
+          name: "mealplan.forWeek",
+          params: { week: "this-week" }
+        }
+      }
+    ]
   }
 ];
 
