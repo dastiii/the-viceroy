@@ -3,7 +3,7 @@
     <div class="page-background min-h-screen flex flex-col">
       <visible when-hidden="#site-header">
         <header
-          class="bg-opacity-75 bg-gray-900 hidden lg:block z-20 shadow-md fixed top-0 left-0 w-full"
+          class="bg-opacity-75 bg-gray-950 hidden lg:block z-20 shadow-md fixed top-0 left-0 w-full"
         >
           <div class="container mx-auto py-1">
             <div class="flex flex-col lg:flex-row">
@@ -22,7 +22,7 @@
 
       <room-information></room-information>
 
-      <header :class="{ 'bg-gray-900 bg-opacity-80': isNavOpen }">
+      <header :class="{ 'bg-gray-950 lg:bg-transparent bg-opacity-80': isNavOpen }">
         <div class="pt-4">
           <div class="container mx-auto flex flex-wrap px-4 lg:px-0">
             <h1 class="text-4xl font-brand text-brand flex-grow lg:flex-grow-0">

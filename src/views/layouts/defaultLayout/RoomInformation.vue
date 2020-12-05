@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!closedByUser">
+  <div v-if="!closedByUser && !isLoading">
     <div v-if="roomsAreAvailable" class="w-full bg-brand py-2 px-2">
       <div class="container mx-auto">
         <div class="flex flex-wrap sm:flex-nowrap justify-between text-center">
@@ -51,6 +51,9 @@ export default {
     },
     hadError() {
       return this.$store.getters["rooms/getHasError"];
+    },
+    isLoading() {
+      return this.$store.getters["rooms/getIsLoading"];
     }
   }
 };

@@ -4,7 +4,8 @@
     :class="{
       'w-full flex-grow lg:flex-1 flex-col lg:flex-row lg:flex lg:items-center lg:justify-end lg:space-x-3': !small,
       'flex-1 flex items-center justify-end space-x-3': small,
-      block: isOpen,
+      block: isOpen && !small,
+      'hidden lg:block': !isOpen && !small
     }"
   >
     <router-link
