@@ -23,7 +23,12 @@ import {
   faWarehouseAlt,
   faBoxOpen,
   faWindTurbine,
-  faPlay
+  faPlay,
+  faCheckSquare,
+  faSquare,
+  faTachometer,
+  faChairOffice,
+  faGasPump
 } from "@fortawesome/pro-duotone-svg-icons";
 import Vue from "vue";
 
@@ -50,7 +55,12 @@ library.add(
   faBoxOpen,
   faWindTurbine,
   faPlay,
-  faUtensils
+  faUtensils,
+  faCheckSquare,
+  faSquare,
+  faTachometer,
+  faChairOffice,
+  faGasPump,
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);

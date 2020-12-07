@@ -18,7 +18,7 @@
     </div>
 
     <div
-      v-else-if="!roomsAreAvailable && !hadError"
+      v-else-if="!roomsAreAvailable && !isLoading && !hadError"
       class="w-full bg-red-600 text-white py-2 px-2"
     >
       <div class="container mx-auto">

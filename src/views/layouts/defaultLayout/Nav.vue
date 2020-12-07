@@ -34,6 +34,18 @@
     >
 
     <router-link
+      :to="{ name: 'vehicles' }"
+      class="whitespace-nowrap hover:bg-brand hover:text-black"
+      :class="{
+        'my-2 lg:my-0 block py-2 px-3': !small,
+        'px-2 py-1': small
+      }"
+      active-class="bg-brand text-black"
+      exact
+      >Fahrzeugvermietung</router-link
+    >
+
+    <router-link
       :to="{ name: 'mealplan' }"
       class="whitespace-nowrap hover:bg-brand hover:text-black"
       :class="{

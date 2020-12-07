@@ -16,6 +16,12 @@ const routes = [
       import(/* webpackChunkName: "benefits" */ "../views/Benefits")
   },
   {
+    path: "/vehicles",
+    name: "vehicles",
+    component: () =>
+      import(/* webpackChunkName: "vehicles" */ "../views/Vehicles")
+  },
+  {
     path: "/mealplan",
     component: () =>
       import(/* webpackChunkName: "mealplan" */ "../views/Mealplan"),
