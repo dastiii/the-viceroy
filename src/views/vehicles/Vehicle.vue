@@ -84,7 +84,7 @@
         class="bg-gray-900 py-2 px-4 text-gray-100 text-right flex-1 font-brand first:rounded-l-lg last:rounded-r-lg"
       >
         <div class="text-lg">
-          Tagestarif
+          Tagestarif*
         </div>
         <p class="text-3xl">
           $300
@@ -95,7 +95,7 @@
         class="bg-gray-900 py-2 px-4 text-gray-100 text-right flex-1 font-brand first:rounded-l-lg last:rounded-r-lg"
       >
         <div class="text-lg">
-          Wochentarif
+          Wochentarif*
         </div>
         <p class="text-3xl">
           $1,300
@@ -103,13 +103,24 @@
         </p>
       </div>
       <div
-        class="bg-brand py-2 px-4 text-black text-right flex-1 font-brand first:rounded-l-lg last:rounded-r-lg"
+        class="bg-brand py-2 px-4 text-black opacity-75 text-right flex-1 font-brand first:rounded-l-lg last:rounded-r-lg"
       >
         <div class="text-lg">
-          Kombitarif "sleep'n'drive"
+          Kombitarif "sleep"*
         </div>
         <p class="text-3xl">
           $50
+          <span class="text-base">/ Stunde</span>
+        </p>
+      </div>
+      <div
+        class="bg-brand py-2 px-4 text-black text-right flex-1 font-brand first:rounded-l-lg last:rounded-r-lg"
+      >
+        <div class="text-lg">
+          Kombitarif "sleep'n'eat"*
+        </div>
+        <p class="text-3xl">
+          $60
           <span class="text-base">/ Stunde</span>
         </p>
       </div>
