@@ -34,13 +34,13 @@ export default {
 
   to {
     transform: translate3d(0, 0, 0);
-    opacity: 1
+    opacity: 1;
   }
 }
 
 .fade-in-left-leave-to {
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
 }
 
 .fade-in-left-enter {

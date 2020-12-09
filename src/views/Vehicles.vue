@@ -1,96 +1,323 @@
 <template>
   <div class="mt-8 mb-8 md:mt-20">
-    <h3 class="text-white text-3xl font-brand -mb-1 pl-4 text-brand">
-      Fahrzeugvermietung
-    </h3>
-
-    <div class="w-full flex flex-wrap lg:flex-no-wrap items-stretch bg-gray-950 rounded-lg">
-      <div class="w-full lg:w-2/3 py-8">
-        <div class="grid grid-cols-1 gap-x-4 gap-y-12 mx-4">
-          <vehicle></vehicle>
-          <vehicle></vehicle>
-          <vehicle></vehicle>
+    <div class="flex flex-wrap lg:flex-no-wrap items-end">
+      <h3
+        class="mb-4 lg:-mb-1 flex-1 text-white text-3xl font-brand pl-4 text-brand"
+      >
+        Fahrzeugvermietung
+      </h3>
+      <div class="w-full flex items-stretch lg:min-w-64 lg:max-w-lg">
+        <div class="bg-brand flex flex-col justify-center px-4 rounded-tl-lg">
+          <font-awesome-icon
+            class="text-black text-2xl"
+            :icon="['fad', 'search']"
+          ></font-awesome-icon>
         </div>
+        <input
+          type="text"
+          placeholder="Welches Fahrzeug suchst du?"
+          v-model="filters.name"
+          class="w-full bg-gray-900 rounded-tr-lg px-4 py-4 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
+        />
+      </div>
+    </div>
+    <div
+      class="w-full flex flex-wrap lg:flex-no-wrap items-stretch bg-gray-950 rounded-lg rounded-tr-none"
+    >
+      <div class="w-full lg:w-2/3 py-8">
+        <div
+          v-if="filteredVehicles.length <= 0"
+          class="bg-gray-900 rounded-lg flex flex-col justify-center mx-4 text-gray-200 text-xl font-brand p-8 text-center"
+        >
+          <p>
+            Es konnten keine Fahrzeuge mit deinen ausgewählten Kriterien
+            gefunden werden. Versuche deine Suchkriterien zu ändern.
+          </p>
+        </div>
+        <transition-group
+          name="list"
+          tag="div"
+          class="grid grid-cols-1 gap-x-4 gap-y-12 mx-4"
+        >
+          <vehicle
+            v-for="vehicle in filteredVehicles"
+            :key="vehicle.id"
+            :vehicle="vehicle"
+          ></vehicle>
+        </transition-group>
       </div>
       <div class="w-full lg:w-1/3">
-        <div class="px-3 pt-4 pb-8 space-y-6">
-          <div class="space-y-4">
-            <h2 class="font-brand text-white text-2xl">Verfügbarkeit</h2>
-            <div>
-              <ul class="space-y-1">
-                <li
-                  class="flex items-center cursor-pointer space-x-2 bg-gray-900 rounded py-3 px-2 text-gray-100"
-                >
-                  <font-awesome-icon
-                    :icon="['fad', 'square']"
-                    class="text-2xl text-gray-100"
-                    fixed-width
-                  ></font-awesome-icon>
-                  <span>Sofort verfügbar</span>
-                </li>
-                <li class="flex items-center cursor-pointer space-x-2 bg-gray-900 rounded py-3 px-2 text-gray-100">
-                  <font-awesome-icon
-                    :icon="['fad', 'square']"
-                    class="text-2xl text-gray-100"
-                    fixed-width
-                  ></font-awesome-icon>
-                  <span>vermietet</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="space-y-4">
-            <h2 class="font-brand text-white text-2xl">Klassen</h2>
-            <ul class="space-y-1">
-              <li
-                v-for="category in categories"
-                :key="category.id"
-                @click="toggleCategory(category)"
-                class="flex items-center cursor-pointer space-x-2 bg-gray-900 rounded py-3 px-2 text-gray-100"
+        <div class="px-3 pt-6 pb-8 space-y-6">
+          <toggle :default-open="true">
+            <div slot-scope="{ isOpen, toggle }" class="space-y-4">
+              <div
+                @click="toggle()"
+                class="flex items-center cursor-pointer space-x-2"
               >
                 <font-awesome-icon
-                  v-if="isCategorySelected(category.id)"
-                  :icon="['fad', 'check-square']"
-                  class="text-2xl text-brand"
+                  v-if="!isOpen"
+                  :icon="['fad', 'plus-square']"
+                  class="text-gray-100 text-xl"
                   fixed-width
                 ></font-awesome-icon>
                 <font-awesome-icon
                   v-else
-                  :icon="['fad', 'square']"
-                  class="text-2xl text-gray-100"
+                  :icon="['fad', 'minus-square']"
+                  class="text-gray-100 text-xl"
                   fixed-width
                 ></font-awesome-icon>
-                <span v-text="category.name"></span>
-              </li>
-            </ul>
-          </div>
-          <div class="space-y-6">
-            <h2 class="font-brand text-white text-2xl">Tarifinformationen</h2>
-            <div class="space-y-2">
-              <h3 class="font-brand text-brand text-lg">Tagestarif</h3>
-              <p class="text-gray-200 leading-relaxed">
-                Beim Tagestarif zahlst du einen täglichen Preis für die Miete deines Fahrzeuges. Dieser ist i.d.R. höher als bei einer wöchentlichen Miete, bietet dir allerdings mehr Flexibiltät durch eine kürzere Laufzeit.
-              </p>
+                <h2 class="font-brand text-white text-2xl select-none">
+                  Verfügbarkeit
+                </h2>
+              </div>
+              <transition name="fade">
+                <ul v-if="isOpen" class="space-y-1">
+                  <li
+                    @click="filters.available = !filters.available"
+                    class="flex items-center cursor-pointer space-x-2 bg-gray-900 rounded py-3 px-2 text-gray-100"
+                  >
+                    <font-awesome-icon
+                      v-if="filters.available"
+                      :icon="['fad', 'check-square']"
+                      class="text-2xl text-brand"
+                      fixed-width
+                    ></font-awesome-icon>
+                    <font-awesome-icon
+                      v-else
+                      :icon="['fad', 'square']"
+                      class="text-2xl text-gray-100"
+                      fixed-width
+                    ></font-awesome-icon>
+                    <span>Sofort verfügbar</span>
+                  </li>
+                  <li
+                    @click="filters.unavailable = !filters.unavailable"
+                    class="flex items-center cursor-pointer space-x-2 bg-gray-900 rounded py-3 px-2 text-gray-100"
+                  >
+                    <font-awesome-icon
+                      v-if="filters.unavailable"
+                      :icon="['fad', 'check-square']"
+                      class="text-2xl text-brand"
+                      fixed-width
+                    ></font-awesome-icon>
+                    <font-awesome-icon
+                      v-else
+                      :icon="['fad', 'square']"
+                      class="text-2xl text-gray-100"
+                      fixed-width
+                    ></font-awesome-icon>
+                    <span>vermietet</span>
+                  </li>
+                </ul>
+              </transition>
             </div>
-            <div class="space-y-2">
-              <h3 class="font-brand text-brand text-lg">Wochentarif</h3>
-              <p class="text-gray-200 leading-relaxed">
-                Der Wochentarif spart dir im Vergleich zum Tagestarif durch die längere Mietdauer bares Geld. Im Schnitt sparst du dir 2-3 Tagesmieten pro Woche.
-              </p>
+          </toggle>
+          <toggle>
+            <div slot-scope="{ isOpen, toggle }" class="space-y-4">
+              <div
+                @click="toggle()"
+                class="flex items-center cursor-pointer space-x-2"
+              >
+                <font-awesome-icon
+                  v-if="!isOpen"
+                  :icon="['fad', 'plus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <font-awesome-icon
+                  v-else
+                  :icon="['fad', 'minus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <h2 class="font-brand text-white text-2xl select-none">
+                  Klassen
+                </h2>
+              </div>
+              <transition name="fade">
+                <ul v-if="isOpen" class="space-y-1">
+                  <li
+                    v-for="category in categories"
+                    :key="category.id"
+                    @click="toggleCategory(category)"
+                    class="flex items-center cursor-pointer space-x-2 bg-gray-900 rounded py-3 px-2 text-gray-100"
+                  >
+                    <font-awesome-icon
+                      v-if="isCategorySelected(category.id)"
+                      :icon="['fad', 'check-square']"
+                      class="text-2xl text-brand"
+                      fixed-width
+                    ></font-awesome-icon>
+                    <font-awesome-icon
+                      v-else
+                      :icon="['fad', 'square']"
+                      class="text-2xl text-gray-100"
+                      fixed-width
+                    ></font-awesome-icon>
+                    <span v-text="category.name"></span>
+                  </li>
+                </ul>
+              </transition>
             </div>
-            <div class="space-y-2">
-              <h3 class="font-brand text-brand text-lg">Kombitarif "sleep"</h3>
-              <p class="text-gray-200 leading-relaxed">
-                Der Kombivorteil "sleep" bietet dir zusätzlich zu deinem Fahrzeug eine Übernachtungsmöglichkeit in unserem Hotel. Deine Zimmer- und Mietgebühr wird ganz bequem von deinem Gehalts- oder Sozialhilfeeingang abgezogen.
-              </p>
+          </toggle>
+          <toggle>
+            <div slot-scope="{ isOpen, toggle }" class="space-y-4">
+              <div
+                @click="toggle()"
+                class="flex items-center cursor-pointer space-x-2"
+              >
+                <font-awesome-icon
+                  v-if="!isOpen"
+                  :icon="['fad', 'plus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <font-awesome-icon
+                  v-else
+                  :icon="['fad', 'minus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <h2 class="font-brand text-white text-2xl select-none">
+                  Kofferraum
+                </h2>
+              </div>
+              <transition name="fade">
+                <div v-if="isOpen" class="space-y-2">
+                  <div class="flex items-center">
+                    <p class="w-20 text-gray-200 font-brand text-lg px-6">von</p>
+                    <div class="flex flex-1 items-stretch">
+                      <input
+                        class="flex-1 text-right bg-gray-900 rounded-l-lg px-4 py-2 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
+                        type="number"
+                        v-model="filters.minTrunk"
+                        placeholder="0"
+                      />
+                      <div class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2">
+                        kg
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <p class="w-20 text-gray-200 font-brand text-lg px-6 font-serif">bis</p>
+                    <div class="flex flex-1 items-stretch">
+                      <input
+                        class="flex-1 text-right bg-gray-900 rounded-l-lg px-4 py-2 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
+                        type="number"
+                        v-model="filters.maxTrunk"
+                        placeholder="9999"
+                      />
+                      <div class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2">
+                        kg
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </transition>
             </div>
-            <div class="space-y-2">
-              <h3 class="font-brand text-brand text-lg">Kombitarif "sleep'n'eat"</h3>
-              <p class="text-gray-200 leading-relaxed">
-                Alle Vorteile, die du auch beim Kombitarif "sleep" bekommst. Allerdings erhältst du zusätzlich zu deinem Zimmer und Fahrzeug die täglich wechselnde Verpflegung durch unser Partnerrestaurant GioV. Weitere Details findest du <router-link class="text-brand hover:underline" :to="{ name: 'mealplan' }">hier</router-link>.
-              </p>
+          </toggle>
+          <toggle>
+            <div slot-scope="{ isOpen, toggle }" class="space-y-4">
+              <div
+                @click="toggle()"
+                class="flex items-center cursor-pointer space-x-2"
+              >
+                <font-awesome-icon
+                  v-if="!isOpen"
+                  :icon="['fad', 'plus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <font-awesome-icon
+                  v-else
+                  :icon="['fad', 'minus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <h2 class="font-brand text-white text-2xl select-none">
+                  Endgeschwindigkeit
+                </h2>
+              </div>
+              <transition name="fade">
+                <div v-if="isOpen" class="space-y-2">
+                  <div class="flex items-center">
+                    <p class="w-20 text-gray-200 font-brand text-lg px-6">von</p>
+                    <div class="flex flex-1 items-stretch">
+                      <input
+                        class="flex-1 text-right bg-gray-900 rounded-l-lg px-4 py-2 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
+                        type="number"
+                        v-model="filters.minSpeed"
+                        placeholder="0"
+                      />
+                      <div class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2">
+                        km/h
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <p
+                      class="w-20 text-gray-200 font-brand text-lg px-6 font-serif"
+                    >
+                      bis
+                    </p>
+                    <div class="flex flex-1 items-stretch">
+                      <input
+                        class="flex-1 text-right bg-gray-900 rounded-l-lg px-4 py-2 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
+                        type="number"
+                        v-model="filters.maxSpeed"
+                        placeholder="9999"
+                      />
+                      <div class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2">
+                        km/h
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </transition>
             </div>
-          </div>
+          </toggle>
+          <toggle>
+            <div slot-scope="{ isOpen, toggle }" class="space-y-4">
+              <div
+                @click="toggle()"
+                class="flex items-center cursor-pointer space-x-2"
+              >
+                <font-awesome-icon
+                  v-if="!isOpen"
+                  :icon="['fad', 'plus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <font-awesome-icon
+                  v-else
+                  :icon="['fad', 'minus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <h2 class="font-brand text-white text-2xl select-none">
+                  Tarifinformationen
+                </h2>
+              </div>
+              <transition name="fade">
+                <div v-if="isOpen" class="space-y-6 pl-2">
+                  <div
+                    v-for="tariff in tariffs"
+                    :key="tariff.id"
+                    class="space-y-2"
+                  >
+                    <h3
+                      class="font-brand text-brand text-lg"
+                      v-text="tariff.name"
+                    ></h3>
+                    <p
+                      class="text-gray-200 leading-relaxed"
+                      v-text="tariff.description"
+                    ></p>
+                  </div>
+                </div>
+              </transition>
+            </div>
+          </toggle>
         </div>
       </div>
     </div>
@@ -98,32 +325,100 @@
     <div
       class="w-full bg-gray-950 rounded-lg px-4 py-2 text-gray-400 mt-8 text-justify"
     >
-      * Die Bedingungen für die einzelnen Tarife entnimmst du bitte deinem persönlichen Mietvertrag, den du vor Abschluss von uns erhältst. Bei Fragen zu unseren Bedingungen, melde dich einfach telefonisch oder per SMS bei uns.
+      * Die Bedingungen für die einzelnen Tarife entnimmst du bitte deinem
+      persönlichen Mietvertrag, den du vor Mietabschluss von uns erhältst. Bei
+      Fragen zu unseren Bedingungen, melde dich einfach telefonisch oder per SMS
+      bei uns.
     </div>
   </div>
 </template>
 
 <script>
 import Vehicle from "@/views/vehicles/Vehicle";
+import Toggle from "@/components/Toggle";
+
 export default {
-  components: {Vehicle},
+  components: { Vehicle, Toggle },
+  created() {
+    this.load();
+  },
   data() {
     return {
+      isLoading: true,
+      hasError: false,
       selectedCategories: [],
-      categories: [
-        { name: "PKW", id: 5 },
-        { name: "LKW", id: 6 },
-        { name: "Sportwagen", id: 1 },
-        { name: "Nutzfahrzeuge", id: 3 },
-        { name: "Geländefahrzeuge", id: 4 },
-        { name: "Motorräder", id: 7 },
-        { name: "Fahrräder", id: 8 }
-      ],
+      categories: [],
+      vehicles: [],
+      tariffs: [],
       filters: {
         name: null,
-        status: "available"
+        available: false,
+        unavailable: false
       }
     };
+  },
+  watch: {
+    filterAvailable(newValue) {
+      if (newValue) {
+        this.filters.unavailable = false;
+      }
+    },
+    filterUnavailable(newValue) {
+      if (newValue) {
+        this.filters.available = false;
+      }
+    }
+  },
+  computed: {
+    filteredVehicles() {
+      let vehicles = this.vehicles;
+
+      if (this.selectedCategories.length > 0) {
+        vehicles = vehicles.filter(vehicle =>
+          this.selectedCategories.includes(vehicle.model.vehicle_category_id)
+        );
+      }
+
+      if (this.filterAvailable) {
+        vehicles = vehicles.filter(vehicle => !vehicle.tenant_id);
+      }
+
+      if (this.filterUnavailable) {
+        vehicles = vehicles.filter(vehicle => vehicle.tenant_id);
+      }
+
+      if (this.filters.name) {
+        vehicles = vehicles.filter(vehicle => {
+          let vehicleName = `${vehicle.model.manufacturer} ${vehicle.model.model}`;
+
+          return vehicleName.match(new RegExp(this.filters.name, "i"));
+        });
+      }
+
+      if (this.filters.minTrunk) {
+        vehicles = vehicles.filter(vehicle => vehicle.model.trunk >= this.filters.minTrunk);
+      }
+
+      if (this.filters.maxTrunk) {
+        vehicles = vehicles.filter(vehicle => vehicle.model.trunk <= this.filters.maxTrunk);
+      }
+
+      if (this.filters.minSpeed) {
+        vehicles = vehicles.filter(vehicle => vehicle.max_speed >= this.filters.minSpeed);
+      }
+
+      if (this.filters.maxSpeed) {
+        vehicles = vehicles.filter(vehicle => vehicle.max_speed <= this.filters.maxSpeed);
+      }
+
+      return vehicles;
+    },
+    filterAvailable() {
+      return this.filters.available;
+    },
+    filterUnavailable() {
+      return this.filters.unavailable;
+    }
   },
   methods: {
     toggleCategory(category) {
@@ -141,7 +436,38 @@ export default {
     },
     isCategorySelected(categoryId) {
       return this.selectedCategories.includes(categoryId);
+    },
+    load() {
+      this.isLoading = true;
+
+      this.$http
+        .get("api/vehicles")
+        .then(({ data }) => {
+          this.categories = data.categories;
+          this.vehicles = data.vehicles;
+          this.tariffs = data.tariffs;
+
+          this.isLoading = false;
+          this.hasError = false;
+        })
+        .catch(() => {
+          this.isLoading = false;
+          this.hasError = true;
+        });
     }
   }
 };
 </script>
+
+<style>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.3s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+.list-move {
+  transition: transform 0.3s;
+}
+</style>

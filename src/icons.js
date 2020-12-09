@@ -28,7 +28,9 @@ import {
   faSquare,
   faTachometer,
   faChairOffice,
-  faGasPump
+  faGasPump,
+  faPlusSquare,
+  faMinusSquare
 } from "@fortawesome/pro-duotone-svg-icons";
 import Vue from "vue";
 
@@ -61,6 +63,8 @@ library.add(
   faTachometer,
   faChairOffice,
   faGasPump,
+  faPlusSquare,
+  faMinusSquare
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
