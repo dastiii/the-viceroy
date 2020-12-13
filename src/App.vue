@@ -1,14 +1,10 @@
 <template>
   <default-layout>
-    <keep-alive>
-      <transition
-        name="fade-in-left"
-        mode="out-in"
-        appear
-      >
+    <transition name="fade-in-left" mode="out-in" appear>
+      <keep-alive>
         <router-view></router-view>
-      </transition>
-    </keep-alive>
+      </keep-alive>
+    </transition>
   </default-layout>
 </template>
 
