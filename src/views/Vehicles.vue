@@ -185,7 +185,9 @@
               <transition name="fade">
                 <div v-if="isOpen" class="space-y-2">
                   <div class="flex items-center">
-                    <p class="w-20 text-gray-200 font-brand text-lg px-6">von</p>
+                    <p class="w-20 text-gray-200 font-brand text-lg px-6">
+                      von
+                    </p>
                     <div class="flex flex-1 items-stretch">
                       <input
                         class="flex-1 text-right bg-gray-900 rounded-l-lg px-4 py-2 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
@@ -193,13 +195,19 @@
                         v-model="filters.minTrunk"
                         placeholder="0"
                       />
-                      <div class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2">
+                      <div
+                        class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2"
+                      >
                         kg
                       </div>
                     </div>
                   </div>
                   <div class="flex items-center">
-                    <p class="w-20 text-gray-200 font-brand text-lg px-6 font-serif">bis</p>
+                    <p
+                      class="w-20 text-gray-200 font-brand text-lg px-6 font-serif"
+                    >
+                      bis
+                    </p>
                     <div class="flex flex-1 items-stretch">
                       <input
                         class="flex-1 text-right bg-gray-900 rounded-l-lg px-4 py-2 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
@@ -207,7 +215,9 @@
                         v-model="filters.maxTrunk"
                         placeholder="9999"
                       />
-                      <div class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2">
+                      <div
+                        class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2"
+                      >
                         kg
                       </div>
                     </div>
@@ -241,7 +251,9 @@
               <transition name="fade">
                 <div v-if="isOpen" class="space-y-2">
                   <div class="flex items-center">
-                    <p class="w-20 text-gray-200 font-brand text-lg px-6">von</p>
+                    <p class="w-20 text-gray-200 font-brand text-lg px-6">
+                      von
+                    </p>
                     <div class="flex flex-1 items-stretch">
                       <input
                         class="flex-1 text-right bg-gray-900 rounded-l-lg px-4 py-2 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
@@ -249,7 +261,9 @@
                         v-model="filters.minSpeed"
                         placeholder="0"
                       />
-                      <div class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2">
+                      <div
+                        class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2"
+                      >
                         km/h
                       </div>
                     </div>
@@ -267,7 +281,9 @@
                         v-model="filters.maxSpeed"
                         placeholder="9999"
                       />
-                      <div class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2">
+                      <div
+                        class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2"
+                      >
                         km/h
                       </div>
                     </div>
@@ -396,19 +412,27 @@ export default {
       }
 
       if (this.filters.minTrunk) {
-        vehicles = vehicles.filter(vehicle => vehicle.model.trunk >= this.filters.minTrunk);
+        vehicles = vehicles.filter(
+          vehicle => vehicle.model.trunk >= this.filters.minTrunk
+        );
       }
 
       if (this.filters.maxTrunk) {
-        vehicles = vehicles.filter(vehicle => vehicle.model.trunk <= this.filters.maxTrunk);
+        vehicles = vehicles.filter(
+          vehicle => vehicle.model.trunk <= this.filters.maxTrunk
+        );
       }
 
       if (this.filters.minSpeed) {
-        vehicles = vehicles.filter(vehicle => vehicle.max_speed >= this.filters.minSpeed);
+        vehicles = vehicles.filter(
+          vehicle => vehicle.max_speed >= this.filters.minSpeed
+        );
       }
 
       if (this.filters.maxSpeed) {
-        vehicles = vehicles.filter(vehicle => vehicle.max_speed <= this.filters.maxSpeed);
+        vehicles = vehicles.filter(
+          vehicle => vehicle.max_speed <= this.filters.maxSpeed
+        );
       }
 
       return vehicles;
@@ -441,7 +465,7 @@ export default {
       this.isLoading = true;
 
       this.$http
-        .get("api/vehicles")
+        .get("vehicles")
         .then(({ data }) => {
           this.categories = data.categories;
           this.vehicles = data.vehicles;

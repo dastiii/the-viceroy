@@ -103,7 +103,7 @@ export default {
       this.hasError = false;
 
       this.$http
-        .get(`/api/mealplans?week=${this.week}`)
+        .get(`mealplans?week=${this.week}`)
         .then(res => {
           this.data[this.week] = res.data;
 
