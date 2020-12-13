@@ -1,8 +1,6 @@
 <template>
   <div class="mt-8 mb-8 md:mt-20">
-    <h3
-      class="text-white text-3xl font-brand -mb-1 pl-4 text-brand"
-    >
+    <h3 class="text-white text-3xl font-brand -mb-1 pl-4 text-brand">
       Deine Vorteile auf einen Blick
     </h3>
 
@@ -37,14 +35,8 @@
           </ul>
         </li>
         <li class="my-4">
-          <strong class="text-brand">Großzügiges Grundstück</strong> mit
+          <strong class="text-brand">Großzügiges Grundstück</strong> mit vielen
           vielen Parkplätzen, einer Sonnenterrasse und genügend Platz für Events
-        </li>
-        <li class="my-4">
-          <strong class="text-brand">Gewohnte Qualität:</strong> Als Teil
-          von
-          <strong class="font-brand text-brand mr-1">GioV</strong>
-          konnten wir dich vielleicht schon von unserer Qualität überzeugen.
         </li>
       </ul>
 
@@ -67,16 +59,12 @@
         />
       </vue-load-image>
 
-      <h2
-        class="text-center leading-relaxed font-brand text-4xl text-white"
-      >
+      <h2 class="text-center leading-relaxed font-brand text-4xl text-white">
         All' diese Vorteile erhältst du für
         <strong class="text-brand">nur $30 pro Stunde!</strong>
       </h2>
-      <h2
-        class="text-center leading-relaxed font-brand text-4xl text-white"
-      >
-        <strong class="text-brand">Worauf wartest du?</strong> Sicher dir
+      <h2 class="text-center leading-relaxed font-brand text-4xl text-white">
+        <strong class="text-brand">Worauf wartest du?</strong> Sicher dir noch
         noch heute dein Zimmer.
       </h2>
     </div>
