@@ -29,7 +29,16 @@
           v-if="filteredVehicles.length <= 0"
           class="bg-gray-900 rounded-lg flex flex-col justify-center mx-4 text-gray-200 text-xl font-brand p-8 text-center"
         >
-          <p>
+          <p v-if="isLoading" class="flex justify-center space-x-4 items-center">
+            <font-awesome-icon
+              :icon="['fad', 'spinner-third']"
+            ></font-awesome-icon>
+            <span>
+              Fahrzeuge werden geladen.
+            </span>
+          </p>
+
+          <p v-else>
             Es konnten keine Fahrzeuge mit deinen ausgewählten Kriterien
             gefunden werden. Versuche deine Suchkriterien zu ändern.
           </p>
