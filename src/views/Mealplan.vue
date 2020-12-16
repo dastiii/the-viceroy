@@ -61,7 +61,7 @@
         <strong class="text-brand">GioV Restaurant</strong>. Weitere
         Informationen zum Standort des Restaurants findest du im FireVox unter
         GioV oder auf Social. Solltest du Fragen zu den genannten Bedingungen
-        haben, melde dich einfach telefonisch, unter der 1822-76770759, bei uns.
+        haben, melde dich einfach telefonisch unter der 1822-76770759 bei uns.
       </h2>
     </div>
   </div>
