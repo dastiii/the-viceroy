@@ -32,6 +32,7 @@
           <p v-if="isLoading" class="flex justify-center space-x-4 items-center">
             <font-awesome-icon
               :icon="['fad', 'spinner-third']"
+              spin
             ></font-awesome-icon>
             <span>
               Fahrzeuge werden geladen.
