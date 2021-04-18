@@ -3,6 +3,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   purge: ["./src/components/**/*.vue", "./src/views/**/*.vue"],
   darkMode: false, // or 'media' or 'class'
+  mode: "jit",
   theme: {
     extend: {
       fontFamily: {

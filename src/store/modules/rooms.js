@@ -37,7 +37,7 @@ const actions = {
     commit("setHasError", false);
 
     axios
-      .get("/api/rooms-available")
+      .get("/rooms-available")
       .then(({ data }) => {
         commit("setRoomsAvailable", data.roomsAvailable);
         commit("setIsLoading", false);

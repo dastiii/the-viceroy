@@ -302,7 +302,7 @@
               </transition>
             </div>
           </toggle>
-          <toggle>
+          <toggle :default-open="true">
             <div slot-scope="{ isOpen, toggle }" class="space-y-4">
               <div
                 @click="toggle()"

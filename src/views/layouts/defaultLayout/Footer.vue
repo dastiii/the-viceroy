@@ -35,7 +35,7 @@
         >
           <div class="lg:pr-2">
             <h4 class="font-serif leading-relaxed text-3xl text-brand -mb-2">
-              1822-76770759
+              1822-36339966
             </h4>
             <h4 class="font-brand text-xl text-white">
               Kein Platz zum Schlafen?
