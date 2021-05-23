@@ -24,17 +24,12 @@
     <div
       class="w-full flex flex-wrap lg:flex-no-wrap items-stretch rounded-lg rounded-tr-none"
     >
-      <div
-        class="w-full lg:w-2/3 py-8 bg-gray-950 bg-opacity-[.95] rounded-lg rounded-r-none"
-      >
+      <div class="w-full lg:w-2/3 py-8 bg-gray-950 bg-opacity-[.95] rounded-lg rounded-r-none">
         <div
           v-if="filteredVehicles.length <= 0"
           class="bg-gray-900 rounded-lg flex flex-col justify-center mx-4 text-gray-200 text-xl font-brand p-8 text-center"
         >
-          <p
-            v-if="isLoading"
-            class="flex justify-center space-x-4 items-center"
-          >
+          <p v-if="isLoading" class="flex justify-center space-x-4 items-center">
             <font-awesome-icon
               :icon="['fal', 'spinner-third']"
               spin
@@ -61,301 +56,293 @@
           ></vehicle>
         </transition-group>
       </div>
-      <div
-        class="w-full lg:w-1/3 bg-gray-950 bg-opacity-[.85] rounded-lg rounded-l-none rounded-tr-none"
-      >
+      <div class="w-full lg:w-1/3 bg-gray-950 bg-opacity-[.85] rounded-lg rounded-l-none rounded-tr-none">
         <div class="px-3 pt-6 pb-8 space-y-6 sticky top-16">
           <toggle :default-open="true">
-            <template v-slot="{ isOpen, toggle }">
-              <div class="space-y-4">
-                <div
-                  @click="toggle()"
-                  class="flex items-center cursor-pointer space-x-2"
-                >
-                  <font-awesome-icon
-                    v-if="!isOpen"
-                    :icon="['fal', 'plus-square']"
-                    class="text-gray-100 text-xl"
-                    fixed-width
-                  ></font-awesome-icon>
-                  <font-awesome-icon
-                    v-else
-                    :icon="['fal', 'minus-square']"
-                    class="text-gray-100 text-xl"
-                    fixed-width
-                  ></font-awesome-icon>
-                  <h2 class="font-brand text-white text-2xl select-none">
-                    Verfügbarkeit
-                  </h2>
-                </div>
-                <transition name="fade">
-                  <ul v-if="isOpen" class="space-y-1">
-                    <li
-                      @click="filters.available = !filters.available"
-                      class="flex items-center cursor-pointer space-x-2 bg-gray-900 rounded py-3 px-2 text-gray-100"
-                    >
-                      <font-awesome-icon
-                        v-if="filters.available"
-                        :icon="['fal', 'check-square']"
-                        class="text-2xl text-brand"
-                        fixed-width
-                      ></font-awesome-icon>
-                      <font-awesome-icon
-                        v-else
-                        :icon="['fal', 'square']"
-                        class="text-2xl text-gray-100"
-                        fixed-width
-                      ></font-awesome-icon>
-                      <span>Sofort verfügbar</span>
-                    </li>
-                    <li
-                      @click="filters.unavailable = !filters.unavailable"
-                      class="flex items-center cursor-pointer space-x-2 bg-gray-900 rounded py-3 px-2 text-gray-100"
-                    >
-                      <font-awesome-icon
-                        v-if="filters.unavailable"
-                        :icon="['fal', 'check-square']"
-                        class="text-2xl text-brand"
-                        fixed-width
-                      ></font-awesome-icon>
-                      <font-awesome-icon
-                        v-else
-                        :icon="['fal', 'square']"
-                        class="text-2xl text-gray-100"
-                        fixed-width
-                      ></font-awesome-icon>
-                      <span>vermietet</span>
-                    </li>
-                  </ul>
-                </transition>
+            <div slot-scope="{ isOpen, toggle }" class="space-y-4">
+              <div
+                @click="toggle()"
+                class="flex items-center cursor-pointer space-x-2"
+              >
+                <font-awesome-icon
+                  v-if="!isOpen"
+                  :icon="['fal', 'plus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <font-awesome-icon
+                  v-else
+                  :icon="['fal', 'minus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <h2 class="font-brand text-white text-2xl select-none">
+                  Verfügbarkeit
+                </h2>
               </div>
-            </template>
+              <transition name="fade">
+                <ul v-if="isOpen" class="space-y-1">
+                  <li
+                    @click="filters.available = !filters.available"
+                    class="flex items-center cursor-pointer space-x-2 bg-gray-900 rounded py-3 px-2 text-gray-100"
+                  >
+                    <font-awesome-icon
+                      v-if="filters.available"
+                      :icon="['fal', 'check-square']"
+                      class="text-2xl text-brand"
+                      fixed-width
+                    ></font-awesome-icon>
+                    <font-awesome-icon
+                      v-else
+                      :icon="['fal', 'square']"
+                      class="text-2xl text-gray-100"
+                      fixed-width
+                    ></font-awesome-icon>
+                    <span>Sofort verfügbar</span>
+                  </li>
+                  <li
+                    @click="filters.unavailable = !filters.unavailable"
+                    class="flex items-center cursor-pointer space-x-2 bg-gray-900 rounded py-3 px-2 text-gray-100"
+                  >
+                    <font-awesome-icon
+                      v-if="filters.unavailable"
+                      :icon="['fal', 'check-square']"
+                      class="text-2xl text-brand"
+                      fixed-width
+                    ></font-awesome-icon>
+                    <font-awesome-icon
+                      v-else
+                      :icon="['fal', 'square']"
+                      class="text-2xl text-gray-100"
+                      fixed-width
+                    ></font-awesome-icon>
+                    <span>vermietet</span>
+                  </li>
+                </ul>
+              </transition>
+            </div>
           </toggle>
           <toggle>
-            <template v-slot="{ isOpen, toggle }">
-              <div class="space-y-4">
-                <div
-                  @click="toggle()"
-                  class="flex items-center cursor-pointer space-x-2"
-                >
-                  <font-awesome-icon
-                    v-if="!isOpen"
-                    :icon="['fal', 'plus-square']"
-                    class="text-gray-100 text-xl"
-                    fixed-width
-                  ></font-awesome-icon>
-                  <font-awesome-icon
-                    v-else
-                    :icon="['fal', 'minus-square']"
-                    class="text-gray-100 text-xl"
-                    fixed-width
-                  ></font-awesome-icon>
-                  <h2 class="font-brand text-white text-2xl select-none">
-                    Klassen
-                  </h2>
-                </div>
-                <transition name="fade">
-                  <ul v-if="isOpen" class="space-y-1">
-                    <li
-                      v-for="category in categories"
-                      :key="category.id"
-                      @click="toggleCategory(category)"
-                      class="flex items-center cursor-pointer space-x-2 bg-gray-900 rounded py-3 px-2 text-gray-100"
-                    >
-                      <font-awesome-icon
-                        v-if="isCategorySelected(category.id)"
-                        :icon="['fal', 'check-square']"
-                        class="text-2xl text-brand"
-                        fixed-width
-                      ></font-awesome-icon>
-                      <font-awesome-icon
-                        v-else
-                        :icon="['fal', 'square']"
-                        class="text-2xl text-gray-100"
-                        fixed-width
-                      ></font-awesome-icon>
-                      <span v-text="category.name"></span>
-                    </li>
-                  </ul>
-                </transition>
+            <div slot-scope="{ isOpen, toggle }" class="space-y-4">
+              <div
+                @click="toggle()"
+                class="flex items-center cursor-pointer space-x-2"
+              >
+                <font-awesome-icon
+                  v-if="!isOpen"
+                  :icon="['fal', 'plus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <font-awesome-icon
+                  v-else
+                  :icon="['fal', 'minus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <h2 class="font-brand text-white text-2xl select-none">
+                  Klassen
+                </h2>
               </div>
-            </template>
+              <transition name="fade">
+                <ul v-if="isOpen" class="space-y-1">
+                  <li
+                    v-for="category in categories"
+                    :key="category.id"
+                    @click="toggleCategory(category)"
+                    class="flex items-center cursor-pointer space-x-2 bg-gray-900 rounded py-3 px-2 text-gray-100"
+                  >
+                    <font-awesome-icon
+                      v-if="isCategorySelected(category.id)"
+                      :icon="['fal', 'check-square']"
+                      class="text-2xl text-brand"
+                      fixed-width
+                    ></font-awesome-icon>
+                    <font-awesome-icon
+                      v-else
+                      :icon="['fal', 'square']"
+                      class="text-2xl text-gray-100"
+                      fixed-width
+                    ></font-awesome-icon>
+                    <span v-text="category.name"></span>
+                  </li>
+                </ul>
+              </transition>
+            </div>
           </toggle>
           <toggle>
-            <template v-slot="{ isOpen, toggle }">
-              <div class="space-y-4">
-                <div
-                  @click="toggle()"
-                  class="flex items-center cursor-pointer space-x-2"
-                >
-                  <font-awesome-icon
-                    v-if="!isOpen"
-                    :icon="['fal', 'plus-square']"
-                    class="text-gray-100 text-xl"
-                    fixed-width
-                  ></font-awesome-icon>
-                  <font-awesome-icon
-                    v-else
-                    :icon="['fal', 'minus-square']"
-                    class="text-gray-100 text-xl"
-                    fixed-width
-                  ></font-awesome-icon>
-                  <h2 class="font-brand text-white text-2xl select-none">
-                    Kofferraum
-                  </h2>
-                </div>
-                <transition name="fade">
-                  <div v-if="isOpen" class="space-y-2">
-                    <div class="flex items-center">
-                      <p class="w-20 text-gray-200 font-brand text-lg px-6">
-                        von
-                      </p>
-                      <div class="flex flex-1 items-stretch">
-                        <input
-                          class="flex-1 text-right bg-gray-900 rounded-l-lg px-4 py-2 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
-                          type="number"
-                          v-model="filters.minTrunk"
-                          placeholder="0"
-                        />
-                        <div
-                          class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2"
-                        >
-                          kg
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <p
-                        class="w-20 text-gray-200 font-brand text-lg px-6 font-serif"
+            <div slot-scope="{ isOpen, toggle }" class="space-y-4">
+              <div
+                @click="toggle()"
+                class="flex items-center cursor-pointer space-x-2"
+              >
+                <font-awesome-icon
+                  v-if="!isOpen"
+                  :icon="['fal', 'plus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <font-awesome-icon
+                  v-else
+                  :icon="['fal', 'minus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <h2 class="font-brand text-white text-2xl select-none">
+                  Kofferraum
+                </h2>
+              </div>
+              <transition name="fade">
+                <div v-if="isOpen" class="space-y-2">
+                  <div class="flex items-center">
+                    <p class="w-20 text-gray-200 font-brand text-lg px-6">
+                      von
+                    </p>
+                    <div class="flex flex-1 items-stretch">
+                      <input
+                        class="flex-1 text-right bg-gray-900 rounded-l-lg px-4 py-2 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
+                        type="number"
+                        v-model="filters.minTrunk"
+                        placeholder="0"
+                      />
+                      <div
+                        class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2"
                       >
-                        bis
-                      </p>
-                      <div class="flex flex-1 items-stretch">
-                        <input
-                          class="flex-1 text-right bg-gray-900 rounded-l-lg px-4 py-2 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
-                          type="number"
-                          v-model="filters.maxTrunk"
-                          placeholder="9999"
-                        />
-                        <div
-                          class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2"
-                        >
-                          kg
-                        </div>
+                        kg
                       </div>
                     </div>
                   </div>
-                </transition>
-              </div>
-            </template>
-          </toggle>
-          <toggle>
-            <template v-slot="{ isOpen, toggle }">
-              <div class="space-y-4">
-                <div
-                  @click="toggle()"
-                  class="flex items-center cursor-pointer space-x-2"
-                >
-                  <font-awesome-icon
-                    v-if="!isOpen"
-                    :icon="['fal', 'plus-square']"
-                    class="text-gray-100 text-xl"
-                    fixed-width
-                  ></font-awesome-icon>
-                  <font-awesome-icon
-                    v-else
-                    :icon="['fal', 'minus-square']"
-                    class="text-gray-100 text-xl"
-                    fixed-width
-                  ></font-awesome-icon>
-                  <h2 class="font-brand text-white text-2xl select-none">
-                    Endgeschwindigkeit
-                  </h2>
-                </div>
-                <transition name="fade">
-                  <div v-if="isOpen" class="space-y-2">
-                    <div class="flex items-center">
-                      <p class="w-20 text-gray-200 font-brand text-lg px-6">
-                        von
-                      </p>
-                      <div class="flex flex-1 items-stretch">
-                        <input
-                          class="flex-1 text-right bg-gray-900 rounded-l-lg px-4 py-2 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
-                          type="number"
-                          v-model="filters.minSpeed"
-                          placeholder="0"
-                        />
-                        <div
-                          class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2"
-                        >
-                          km/h
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <p
-                        class="w-20 text-gray-200 font-brand text-lg px-6 font-serif"
+                  <div class="flex items-center">
+                    <p
+                      class="w-20 text-gray-200 font-brand text-lg px-6 font-serif"
+                    >
+                      bis
+                    </p>
+                    <div class="flex flex-1 items-stretch">
+                      <input
+                        class="flex-1 text-right bg-gray-900 rounded-l-lg px-4 py-2 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
+                        type="number"
+                        v-model="filters.maxTrunk"
+                        placeholder="9999"
+                      />
+                      <div
+                        class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2"
                       >
-                        bis
-                      </p>
-                      <div class="flex flex-1 items-stretch">
-                        <input
-                          class="flex-1 text-right bg-gray-900 rounded-l-lg px-4 py-2 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
-                          type="number"
-                          v-model="filters.maxSpeed"
-                          placeholder="9999"
-                        />
-                        <div
-                          class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2"
-                        >
-                          km/h
-                        </div>
+                        kg
                       </div>
                     </div>
                   </div>
-                </transition>
+                </div>
+              </transition>
+            </div>
+          </toggle>
+          <toggle>
+            <div slot-scope="{ isOpen, toggle }" class="space-y-4">
+              <div
+                @click="toggle()"
+                class="flex items-center cursor-pointer space-x-2"
+              >
+                <font-awesome-icon
+                  v-if="!isOpen"
+                  :icon="['fal', 'plus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <font-awesome-icon
+                  v-else
+                  :icon="['fal', 'minus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <h2 class="font-brand text-white text-2xl select-none">
+                  Endgeschwindigkeit
+                </h2>
               </div>
-            </template>
+              <transition name="fade">
+                <div v-if="isOpen" class="space-y-2">
+                  <div class="flex items-center">
+                    <p class="w-20 text-gray-200 font-brand text-lg px-6">
+                      von
+                    </p>
+                    <div class="flex flex-1 items-stretch">
+                      <input
+                        class="flex-1 text-right bg-gray-900 rounded-l-lg px-4 py-2 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
+                        type="number"
+                        v-model="filters.minSpeed"
+                        placeholder="0"
+                      />
+                      <div
+                        class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2"
+                      >
+                        km/h
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <p
+                      class="w-20 text-gray-200 font-brand text-lg px-6 font-serif"
+                    >
+                      bis
+                    </p>
+                    <div class="flex flex-1 items-stretch">
+                      <input
+                        class="flex-1 text-right bg-gray-900 rounded-l-lg px-4 py-2 text-lg text-white outline-none border border-gray-900 focus:border-gray-800"
+                        type="number"
+                        v-model="filters.maxSpeed"
+                        placeholder="9999"
+                      />
+                      <div
+                        class="bg-gray-900 rounded-r-lg text-gray-100 flex flex-col justify-center px-2"
+                      >
+                        km/h
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </transition>
+            </div>
           </toggle>
           <toggle :default-open="true">
-            <template v-slot="{ isOpen, toggle }">
-              <div class="space-y-4">
-                <div
-                  @click="toggle()"
-                  class="flex items-center cursor-pointer space-x-2"
-                >
-                  <font-awesome-icon
-                    v-if="!isOpen"
-                    :icon="['fal', 'plus-square']"
-                    class="text-gray-100 text-xl"
-                    fixed-width
-                  ></font-awesome-icon>
-                  <font-awesome-icon
-                    v-else
-                    :icon="['fal', 'minus-square']"
-                    class="text-gray-100 text-xl"
-                    fixed-width
-                  ></font-awesome-icon>
-                  <h2 class="font-brand text-white text-2xl select-none">
-                    Tarifinformationen
-                  </h2>
-                </div>
-                <transition name="fade">
-                  <div v-if="isOpen" class="space-y-4 pl-2">
-                    <div v-for="tariff in tariffs" :key="tariff.id" class="">
-                      <h3
-                        class="font-brand text-brand text-lg"
-                        v-text="tariff.name"
-                      ></h3>
-                      <p
-                        class="text-gray-200 leading-relaxed"
-                        v-text="tariff.description"
-                      ></p>
-                    </div>
-                  </div>
-                </transition>
+            <div slot-scope="{ isOpen, toggle }" class="space-y-4">
+              <div
+                @click="toggle()"
+                class="flex items-center cursor-pointer space-x-2"
+              >
+                <font-awesome-icon
+                  v-if="!isOpen"
+                  :icon="['fal', 'plus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <font-awesome-icon
+                  v-else
+                  :icon="['fal', 'minus-square']"
+                  class="text-gray-100 text-xl"
+                  fixed-width
+                ></font-awesome-icon>
+                <h2 class="font-brand text-white text-2xl select-none">
+                  Tarifinformationen
+                </h2>
               </div>
-            </template>
+              <transition name="fade">
+                <div v-if="isOpen" class="space-y-4 pl-2">
+                  <div
+                    v-for="tariff in tariffs"
+                    :key="tariff.id"
+                    class=""
+                  >
+                    <h3
+                      class="font-brand text-brand text-lg"
+                      v-text="tariff.name"
+                    ></h3>
+                    <p
+                      class="text-gray-200 leading-relaxed"
+                      v-text="tariff.description"
+                    ></p>
+                  </div>
+                </div>
+              </transition>
+            </div>
           </toggle>
         </div>
       </div>

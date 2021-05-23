@@ -86,11 +86,32 @@
       </div>
     </div>
     <div class="w-full lg:w-5/12 mt-8 lg:mt-0">
-      <img
-        :src="vehicle.model.picture_url"
-        class="mx-auto w-2/3 lg:mx-0 lg:w-full lg:h-full lg:max-h-56 rounded-lg object-cover"
-        :alt="vehicle.model.model"
-      />
+      <vue-load-image>
+        <img
+          slot="image"
+          :src="vehicle.model.picture_url"
+          class="mx-auto w-2/3 lg:mx-0 lg:w-full lg:h-full lg:max-h-56 rounded-lg object-cover"
+          :alt="vehicle.model.model"
+        />
+        <div
+          slot="preloader"
+          class="bg-gray-900 rounded-lg w-2/3 lg:mx-0 h-56 lg:w-full mx-auto text-center"
+        >
+          <font-awesome-icon
+            :icon="['fal', 'spinner-third']"
+            class="h-full w-full text-white text-2xl"
+            spin
+          ></font-awesome-icon>
+        </div>
+        <div
+          slot="error"
+          class="bg-gray-900 rounded-lg w-2/3 lg:mx-0 h-56 lg:w-full mx-auto text-center flex flex-col justify-center"
+        >
+          <span class="text-gray-400 font-brand"
+            >Fahrzeugbild nicht verfügbar</span
+          >
+        </div>
+      </vue-load-image>
     </div>
     <div
       class=" w-full flex flex-wrap lg:flex-no-wrap justify-end items-stretch space-x-1 text-white mt-8"
@@ -128,7 +149,12 @@
 </template>
 
 <script>
+import VueLoadImage from "vue-load-image";
+
 export default {
+  components: {
+    VueLoadImage
+  },
   props: {
     vehicle: {
       type: Object,

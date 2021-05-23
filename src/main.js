@@ -1,4 +1,4 @@
-import { createApp } from "vue";
+import Vue from "vue";
 import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
@@ -6,20 +6,19 @@ import store from "./store";
 import "./app.css";
 import axios from "@/axios";
 import "./icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-const app = createApp(App);
+Vue.config.productionTip = false;
+Vue.prototype.$http = axios;
 
-app.config.globalProperties.$http = axios;
-app.config.globalProperties.$formatCurrency = new Intl.NumberFormat("en-US", {
+Vue.prototype.$formatCurrency = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
   maximumFractionDigits: 0,
   minimumFractionDigits: 0
 });
 
-app
-  .component("font-awesome-icon", FontAwesomeIcon)
-  .use(router)
-  .use(store)
-  .mount("#app");
+new Vue({
+  router,
+  store,
+  render: h => h(App)
+}).$mount("#app");

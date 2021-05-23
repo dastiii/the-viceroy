@@ -3,7 +3,7 @@ export default {
   props: {
     defaultOpen: {
       type: Boolean,
-      default: false
+      default: false,
     }
   },
   created() {
@@ -20,7 +20,7 @@ export default {
     }
   },
   render() {
-    return this.$slots.default({
+    return this.$scopedSlots.default({
       isOpen: this.isOpen,
       toggle: this.toggle
     });

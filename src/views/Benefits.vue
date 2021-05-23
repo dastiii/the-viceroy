@@ -5,9 +5,7 @@
     </h3>
 
     <div class="bg-gray-950 py-4 px-8 rounded-lg bg-opacity-100">
-      <ul
-        class="text-white text-2xl font-brand-hotel mt-4 ml-8 list-disc space-y-6"
-      >
+      <ul class="text-white text-2xl font-brand-hotel mt-4 ml-8 list-disc space-y-6">
         <li>
           <strong class="text-brand">Tägliche Verpflegung</strong> mit
           wechselnder Wochenkarte von
@@ -47,11 +45,24 @@
         </li>
       </ul>
 
-      <img
-        src="@/assets/map.jpg"
-        alt="Standort und Umgebung des Hotels"
-        class="my-12 w-full lg:max-w-7xl object-contain sm:object-cover sm:object-center mx-auto rounded-none lg:rounded-lg"
-      />
+      <vue-load-image class="py-8 -mx-8">
+        <div
+          slot="preloader"
+          class="w-full lg:max-w-xl lg:mx-auto bg-gray-900 bg-opacity-50 flex flex-col text-center justify-around"
+        >
+          <font-awesome-icon
+            class="mx-auto text-4xl text-gray-400"
+            :icon="['fal', 'spinner-third']"
+            spin
+          ></font-awesome-icon>
+        </div>
+        <img
+          slot="image"
+          class="w-full lg:max-w-7xl object-contain sm:object-cover sm:object-center mx-auto rounded-none lg:rounded-lg"
+          src="@/assets/map.jpg"
+          alt="Standort und Umgebung des Hotels"
+        />
+      </vue-load-image>
 
       <h2 class="text-center leading-relaxed font-brand text-4xl text-white">
         All' diese Vorteile erhältst du ab
@@ -66,7 +77,13 @@
 </template>
 
 <script>
-export default {};
+import VueLoadImage from "vue-load-image";
+
+export default {
+  components: {
+    VueLoadImage
+  }
+};
 </script>
 
 <style lang="scss" scoped></style>
