@@ -1,5 +1,4 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
   faUtensils,
   faBoxes,
@@ -32,7 +31,6 @@ import {
   faPlusSquare,
   faMinusSquare
 } from "@fortawesome/pro-light-svg-icons";
-import Vue from "vue";
 
 library.add(
   faSpinner,
@@ -66,7 +64,5 @@ library.add(
   faPlusSquare,
   faMinusSquare
 );
-
-Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 export default library;

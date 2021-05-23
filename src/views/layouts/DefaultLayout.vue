@@ -68,11 +68,12 @@
 import Footer from "./defaultLayout/Footer";
 import Nav from "./defaultLayout/Nav";
 import RoomInformation from "@/views/layouts/defaultLayout/RoomInformation";
+import Visible from "@/components/Visible";
 
 export default {
   components: {
     RoomInformation,
-    Visible: () => import("@/components/Visible"),
+    Visible,
     Footer,
     Nav
   },

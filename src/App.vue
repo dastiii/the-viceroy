@@ -1,10 +1,12 @@
 <template>
   <default-layout>
-    <transition name="fade-in-left" mode="out-in" appear>
-      <keep-alive>
-        <router-view></router-view>
-      </keep-alive>
-    </transition>
+    <router-view v-slot="{ Component }">
+      <transition name="fade-in-left" mode="out-in" appear>
+        <keep-alive>
+          <component :is="Component"></component>
+        </keep-alive>
+      </transition>
+    </router-view>
   </default-layout>
 </template>
 
@@ -46,7 +48,7 @@ export default {
 
 .fade-in-left-enter-to {
   opacity: 0;
-  animation-duration: .7s;
+  animation-duration: 0.7s;
   animation-fill-mode: both;
   animation-name: fadeInLeft;
 }
