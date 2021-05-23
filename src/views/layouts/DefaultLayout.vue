@@ -14,7 +14,7 @@
                 >
               </h1>
 
-              <Nav :small="true" :is-open="isNavOpen"></Nav>
+              <Nav :is-open="isNavOpen" :small="true"></Nav>
             </div>
           </div>
         </header>
@@ -22,10 +22,12 @@
 
       <room-information></room-information>
 
-      <header :class="{ 'bg-gray-950 lg:bg-transparent bg-opacity-80': isNavOpen }">
-        <div class="pt-4">
+      <header class="bg-gray-950 bg-opacity-[0.25] py-2">
+        <div>
           <div class="container mx-auto flex flex-wrap px-4 lg:px-0">
-            <h1 class="text-4xl font-brand text-brand flex-grow lg:flex-grow-0">
+            <h1
+              class="text-4xl font-brand text-brand flex-grow lg:flex-grow-0 drop-shadow"
+            >
               THE VICEROY
               <span class="hidden sm:inline text-xl text-white"
                 >Hotels & Resorts</span
@@ -34,8 +36,8 @@
 
             <div class="block lg:hidden self-center">
               <button
-                @click.prevent="$store.dispatch('layout/toggleNav')"
                 class="flex items-center px-3 py-2 border rounded text-brand border-brand hover:text-white hover:border-white"
+                @click.prevent="$store.dispatch('layout/toggleNav')"
               >
                 <svg
                   class="fill-current h-3 w-3"
@@ -53,7 +55,7 @@
         </div>
       </header>
 
-      <main class="flex-1 container mx-auto">
+      <main class="flex-1 container mx-auto flex flex-col justify-around">
         <slot></slot>
       </main>
 

@@ -7,7 +7,7 @@
       <div v-if="isLoading" class="w-full text-center my-16">
         <font-awesome-icon
           class="text-gray-100 text-3xl"
-          :icon="['fad', 'spinner-third']"
+          :icon="['fal', 'spinner-third']"
           spin
         ></font-awesome-icon>
         <div class="font-brand-hotel text-gray-300 text-xl mt-4">
@@ -18,7 +18,7 @@
       <div v-else-if="!isLoading && hasError" class="w-full text-center my-16">
         <font-awesome-icon
           class=" text-red-500 text-3xl"
-          :icon="['fad', 'times-circle']"
+          :icon="['fal', 'times-circle']"
         ></font-awesome-icon>
         <div class="font-brand-hotel text-red-500 text-xl mt-4">
           Speiseplan konnte nicht geladen werden, versuche es später erneut.
@@ -31,7 +31,7 @@
       >
         <font-awesome-icon
           class=" text-red-500 text-3xl"
-          :icon="['fad', 'times-circle']"
+          :icon="['fal', 'times-circle']"
         ></font-awesome-icon>
         <div class="font-brand-hotel text-red-500 text-xl mt-4">
           Kein Speiseplan verfügbar, melde dich bitte beim Betreiber.

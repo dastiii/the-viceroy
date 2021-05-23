@@ -31,7 +31,7 @@ import {
   faGasPump,
   faPlusSquare,
   faMinusSquare
-} from "@fortawesome/pro-duotone-svg-icons";
+} from "@fortawesome/pro-light-svg-icons";
 import Vue from "vue";
 
 library.add(

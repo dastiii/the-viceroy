@@ -27,25 +27,8 @@ module.exports = {
           "950": "#121212"
         }
       },
-      rotate: {
-        "10": "10deg",
-        "-10": "-10deg"
-      }
     }
   },
-  variants: [
-    "responsive",
-    "group-hover",
-    "focus-within",
-    "first",
-    "last",
-    "odd",
-    "even",
-    "hover",
-    "focus",
-    "active",
-    "visited",
-    "disabled"
-  ],
+  variants: [],
   plugins: []
 };

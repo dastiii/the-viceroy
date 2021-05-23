@@ -4,7 +4,7 @@
       Deine Vorteile auf einen Blick
     </h3>
 
-    <div class="bg-gray-950 py-4 px-8 rounded-lg bg-opacity-75">
+    <div class="bg-gray-950 py-4 px-8 rounded-lg bg-opacity-100">
       <ul class="text-white text-2xl font-brand-hotel mt-4 ml-8 list-disc space-y-6">
         <li>
           <strong class="text-brand">Tägliche Verpflegung</strong> mit
@@ -52,7 +52,7 @@
         >
           <font-awesome-icon
             class="mx-auto text-4xl text-gray-400"
-            :icon="['fad', 'spinner-third']"
+            :icon="['fal', 'spinner-third']"
             spin
           ></font-awesome-icon>
         </div>

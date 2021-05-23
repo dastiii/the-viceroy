@@ -15,7 +15,7 @@
         <ul class="ml-2 text-gray-100 space-y-2">
           <li v-if="!vehicle.tenant_id" class="flex space-x-2 items-center">
             <font-awesome-icon
-              :icon="['fad', 'check-circle']"
+              :icon="['fal', 'check-circle']"
               class="text-green-500 text-xl"
               fixed-width
             ></font-awesome-icon>
@@ -25,7 +25,7 @@
           </li>
           <li v-else class="flex space-x-2 items-center">
             <font-awesome-icon
-              :icon="['fad', 'times-circle']"
+              :icon="['fal', 'times-circle']"
               class="text-red-500 text-xl"
               fixed-width
             ></font-awesome-icon>
@@ -40,7 +40,7 @@
           </li>
           <li class="flex space-x-2 items-center">
             <font-awesome-icon
-              :icon="['fad', 'tachometer']"
+              :icon="['fal', 'tachometer']"
               class="text-brand text-xl"
               fixed-width
             ></font-awesome-icon>
@@ -54,7 +54,7 @@
           </li>
           <li class="flex space-x-2 items-center">
             <font-awesome-icon
-              :icon="['fad', 'chair-office']"
+              :icon="['fal', 'chair-office']"
               class="text-brand text-xl"
               fixed-width
             ></font-awesome-icon>
@@ -65,7 +65,7 @@
           </li>
           <li class="flex space-x-2 items-center">
             <font-awesome-icon
-              :icon="['fad', 'gas-pump']"
+              :icon="['fal', 'gas-pump']"
               class="text-brand text-xl"
               fixed-width
             ></font-awesome-icon>
@@ -73,7 +73,7 @@
           </li>
           <li class="flex space-x-2 items-center">
             <font-awesome-icon
-              :icon="['fad', 'truck-loading']"
+              :icon="['fal', 'truck-loading']"
               class="text-brand text-xl"
               fixed-width
             ></font-awesome-icon>
@@ -98,7 +98,7 @@
           class="bg-gray-900 rounded-lg w-2/3 lg:mx-0 h-56 lg:w-full mx-auto text-center"
         >
           <font-awesome-icon
-            :icon="['fad', 'spinner-third']"
+            :icon="['fal', 'spinner-third']"
             class="h-full w-full text-white text-2xl"
             spin
           ></font-awesome-icon>

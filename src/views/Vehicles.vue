@@ -10,7 +10,7 @@
         <div class="bg-brand flex flex-col justify-center px-4 rounded-tl-lg">
           <font-awesome-icon
             class="text-black text-2xl"
-            :icon="['fad', 'search']"
+            :icon="['fal', 'search']"
           ></font-awesome-icon>
         </div>
         <input
@@ -22,16 +22,16 @@
       </div>
     </div>
     <div
-      class="w-full flex flex-wrap lg:flex-no-wrap items-stretch bg-gray-950 rounded-lg rounded-tr-none"
+      class="w-full flex flex-wrap lg:flex-no-wrap items-stretch rounded-lg rounded-tr-none"
     >
-      <div class="w-full lg:w-2/3 py-8">
+      <div class="w-full lg:w-2/3 py-8 bg-gray-950 bg-opacity-[.95] rounded-lg rounded-r-none">
         <div
           v-if="filteredVehicles.length <= 0"
           class="bg-gray-900 rounded-lg flex flex-col justify-center mx-4 text-gray-200 text-xl font-brand p-8 text-center"
         >
           <p v-if="isLoading" class="flex justify-center space-x-4 items-center">
             <font-awesome-icon
-              :icon="['fad', 'spinner-third']"
+              :icon="['fal', 'spinner-third']"
               spin
             ></font-awesome-icon>
             <span>
@@ -56,8 +56,8 @@
           ></vehicle>
         </transition-group>
       </div>
-      <div class="w-full lg:w-1/3">
-        <div class="px-3 pt-6 pb-8 space-y-6">
+      <div class="w-full lg:w-1/3 bg-gray-950 bg-opacity-[.85] rounded-lg rounded-l-none rounded-tr-none">
+        <div class="px-3 pt-6 pb-8 space-y-6 sticky top-16">
           <toggle :default-open="true">
             <div slot-scope="{ isOpen, toggle }" class="space-y-4">
               <div
@@ -66,13 +66,13 @@
               >
                 <font-awesome-icon
                   v-if="!isOpen"
-                  :icon="['fad', 'plus-square']"
+                  :icon="['fal', 'plus-square']"
                   class="text-gray-100 text-xl"
                   fixed-width
                 ></font-awesome-icon>
                 <font-awesome-icon
                   v-else
-                  :icon="['fad', 'minus-square']"
+                  :icon="['fal', 'minus-square']"
                   class="text-gray-100 text-xl"
                   fixed-width
                 ></font-awesome-icon>
@@ -88,13 +88,13 @@
                   >
                     <font-awesome-icon
                       v-if="filters.available"
-                      :icon="['fad', 'check-square']"
+                      :icon="['fal', 'check-square']"
                       class="text-2xl text-brand"
                       fixed-width
                     ></font-awesome-icon>
                     <font-awesome-icon
                       v-else
-                      :icon="['fad', 'square']"
+                      :icon="['fal', 'square']"
                       class="text-2xl text-gray-100"
                       fixed-width
                     ></font-awesome-icon>
@@ -106,13 +106,13 @@
                   >
                     <font-awesome-icon
                       v-if="filters.unavailable"
-                      :icon="['fad', 'check-square']"
+                      :icon="['fal', 'check-square']"
                       class="text-2xl text-brand"
                       fixed-width
                     ></font-awesome-icon>
                     <font-awesome-icon
                       v-else
-                      :icon="['fad', 'square']"
+                      :icon="['fal', 'square']"
                       class="text-2xl text-gray-100"
                       fixed-width
                     ></font-awesome-icon>
@@ -130,13 +130,13 @@
               >
                 <font-awesome-icon
                   v-if="!isOpen"
-                  :icon="['fad', 'plus-square']"
+                  :icon="['fal', 'plus-square']"
                   class="text-gray-100 text-xl"
                   fixed-width
                 ></font-awesome-icon>
                 <font-awesome-icon
                   v-else
-                  :icon="['fad', 'minus-square']"
+                  :icon="['fal', 'minus-square']"
                   class="text-gray-100 text-xl"
                   fixed-width
                 ></font-awesome-icon>
@@ -154,13 +154,13 @@
                   >
                     <font-awesome-icon
                       v-if="isCategorySelected(category.id)"
-                      :icon="['fad', 'check-square']"
+                      :icon="['fal', 'check-square']"
                       class="text-2xl text-brand"
                       fixed-width
                     ></font-awesome-icon>
                     <font-awesome-icon
                       v-else
-                      :icon="['fad', 'square']"
+                      :icon="['fal', 'square']"
                       class="text-2xl text-gray-100"
                       fixed-width
                     ></font-awesome-icon>
@@ -178,13 +178,13 @@
               >
                 <font-awesome-icon
                   v-if="!isOpen"
-                  :icon="['fad', 'plus-square']"
+                  :icon="['fal', 'plus-square']"
                   class="text-gray-100 text-xl"
                   fixed-width
                 ></font-awesome-icon>
                 <font-awesome-icon
                   v-else
-                  :icon="['fad', 'minus-square']"
+                  :icon="['fal', 'minus-square']"
                   class="text-gray-100 text-xl"
                   fixed-width
                 ></font-awesome-icon>
@@ -244,13 +244,13 @@
               >
                 <font-awesome-icon
                   v-if="!isOpen"
-                  :icon="['fad', 'plus-square']"
+                  :icon="['fal', 'plus-square']"
                   class="text-gray-100 text-xl"
                   fixed-width
                 ></font-awesome-icon>
                 <font-awesome-icon
                   v-else
-                  :icon="['fad', 'minus-square']"
+                  :icon="['fal', 'minus-square']"
                   class="text-gray-100 text-xl"
                   fixed-width
                 ></font-awesome-icon>
@@ -310,13 +310,13 @@
               >
                 <font-awesome-icon
                   v-if="!isOpen"
-                  :icon="['fad', 'plus-square']"
+                  :icon="['fal', 'plus-square']"
                   class="text-gray-100 text-xl"
                   fixed-width
                 ></font-awesome-icon>
                 <font-awesome-icon
                   v-else
-                  :icon="['fad', 'minus-square']"
+                  :icon="['fal', 'minus-square']"
                   class="text-gray-100 text-xl"
                   fixed-width
                 ></font-awesome-icon>
@@ -325,11 +325,11 @@
                 </h2>
               </div>
               <transition name="fade">
-                <div v-if="isOpen" class="space-y-6 pl-2">
+                <div v-if="isOpen" class="space-y-4 pl-2">
                   <div
                     v-for="tariff in tariffs"
                     :key="tariff.id"
-                    class="space-y-2"
+                    class=""
                   >
                     <h3
                       class="font-brand text-brand text-lg"

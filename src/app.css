@@ -46,7 +46,7 @@
 @tailwind components;
 
 .page-background {
-  background-image: url('./assets/background.jpg');
+  background-image: url('./assets/viceroybg-medium-preset.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;

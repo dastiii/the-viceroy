@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
-    "@fortawesome/pro-duotone-svg-icons": "^5.15.1",
+    "@fortawesome/pro-light-svg-icons": "^5.15.1",
     "@fortawesome/vue-fontawesome": "2",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
@@ -37,7 +37,7 @@
     "postcss": "^8.2.10",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.2",
-    "tailwindcss": "^2.1.1",
+    "tailwindcss": "^2.1.2",
     "vue-template-compiler": "^2.6.12"
   }
 }
